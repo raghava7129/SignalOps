@@ -17,6 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from SignalOps.views import sentry_webhook
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('trigger-error/', lambda request: 1 / 0, name='trigger-error'),
+    path('webhooks/sentry/', sentry_webhook, name='sentry-webhook'),
 ]
